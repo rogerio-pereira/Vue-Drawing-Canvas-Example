@@ -3,7 +3,7 @@
     <!-- image.sync is important because if not model (picture) isn't updated -->
     <vue-drawing-canvas
       ref="assinatura1"
-      :image.sync="picture" 
+      :image.sync="picture"
       saveAs="png"
       :styles="{
         border: 'solid 1px #000',
