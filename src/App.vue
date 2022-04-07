@@ -1,8 +1,9 @@
 <template>
   <div id="app">
+    <!-- image.sync is important because if not model (picture) isn't updated -->
     <vue-drawing-canvas
       ref="assinatura1"
-      :image.sync="picture"
+      :image.sync="picture" 
       saveAs="png"
       :styles="{
         border: 'solid 1px #000',
@@ -18,7 +19,9 @@
     </button>
     <button @click.prevent="$refs.assinatura1.reset()">
       Reset
-    </button>
+    </button><br/><br/>
+
+    <img :src='picture' width='100px' alt=''/>
   </div>
 </template>
 
