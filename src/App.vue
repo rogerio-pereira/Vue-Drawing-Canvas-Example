@@ -1,17 +1,50 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <vue-drawing-canvas
+      ref="assinatura1"
+      :image.sync="picture"
+      saveAs="png"
+      :styles="{
+        border: 'solid 1px #000',
+      }"
+    /><br/>
+
+    <button @click='save'>Save Image</button>
+    <button @click.prevent="$refs.assinatura1.undo()">
+      Undo
+    </button>
+    <button @click.prevent="$refs.assinatura1.redo()">
+      Redo
+    </button>
+    <button @click.prevent="$refs.assinatura1.reset()">
+      Reset
+    </button>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue';
+import VueDrawingCanvas from 'vue-drawing-canvas';
 
 export default {
   name: 'App',
+
   components: {
-    HelloWorld,
+    VueDrawingCanvas,
+  },
+
+  data() {
+    return {
+      picture: null,
+    };
+  },
+
+  methods: {
+    save() {
+      const link = document.createElement('a');
+      link.download = 'image';
+      link.href = this.picture;
+      link.click();
+    },
   },
 };
 </script>
